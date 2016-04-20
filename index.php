@@ -21,11 +21,13 @@
  * @copyright 2012-onwards Jorge Villalon <jorge.villalon@uai.cl>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+// Minimum for Moodle to work, the basic libraries
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
 // Parameter passed from the url.
 $name = required_param('name', PARAM_TEXT);
 
+// Moodle pages require a context, that can be system, course or module (activity or resource)
 $context = context_system::instance();
 $PAGE->set_context($context);
 
@@ -33,10 +35,15 @@ $PAGE->set_context($context);
 require_login();
 
 // Page navigation and URL settings.
-$PAGE->set_url(new moodle_url('local/tics331', array('filter'=>$name)));
+$PAGE->set_url(new moodle_url('/local/tics331', array('filter'=>$name)));
 $PAGE->set_pagelayout('incourse');
 $PAGE->set_title('Hello world');
 
+// Show the page header
 echo $OUTPUT->header();
 
+// Here goes the content
+echo 'Hello world';
+
+// Show the page footer
 echo $OUTPUT->footer();
